@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>わいがかいた</title>
+    <link>/</link>
+    <description>Recent content on わいがかいた</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 21 Mar 2019 09:33:38 +0900</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>coc.vim is awesome</title>
+      <link>/posts/how-to-use-coc-vim/</link>
+      <pubDate>Thu, 21 Mar 2019 09:33:38 +0900</pubDate>
+      
+      <guid>/posts/how-to-use-coc-vim/</guid>
+      <description>相変わらず飽きずにいろんなエディタに浮気しまくっているけど最近はvimが楽しい。
+この間redditみてたら
+ python completion in coc.nvim + pyls : vim  こんなスレッドがあって
+coc.vimて見慣れないプラグインがあるなあと思ってみてみたら わかりやすそうだし、MPLSもバッチリつかえるっぽいから使ってみた。
+インストール方法 僕はプラグインマネジャーにdeinを使ってるので
+[[plugins]] repo = &#39;neoclide/coc.nvim&#39; build = &#39;coc#util#install()&#39; hook_add = &#39;&#39;&#39; nmap &amp;lt;silent&amp;gt; gd &amp;lt;Plug&amp;gt;(coc-definition) nmap &amp;lt;silent&amp;gt; gy &amp;lt;Plug&amp;gt;(coc-type-definition) nmap &amp;lt;silent&amp;gt; gi &amp;lt;Plug&amp;gt;(coc-implementation) nmap &amp;lt;silent&amp;gt; gr &amp;lt;Plug&amp;gt;(coc-references) &amp;quot; Remap for rename current word nmap &amp;lt;leader&amp;gt;rn &amp;lt;Plug&amp;gt;(coc-rename) &amp;quot; Highlight symbol under cursor on CursorHold autocmd CursorHold * silent call CocActionAsync(&#39;highlight&#39;) &amp;quot; Use K for show documentation in preview window nnoremap &amp;lt;silent&amp;gt; K :call &amp;lt;SID&amp;gt;show_documentation()&amp;lt;CR&amp;gt; function!</description>
+    </item>
+    
+    <item>
+      <title>Django Test Client Url Capture Not Working</title>
+      <link>/posts/django-test-client-url-capture-not-working/</link>
+      <pubDate>Wed, 20 Feb 2019 15:12:08 +0900</pubDate>
+      
+      <guid>/posts/django-test-client-url-capture-not-working/</guid>
+      <description>from django.urls import path url_patterns = [ path(&#39;users/&amp;lt;int:user_id&amp;gt;/&#39;, views.show, name=&#39;user_show&#39;), ]  from django.test import TestCase, RequestFactory from users import views from django.contrib.auth.models import AnonymousUser from django.contrib.sessions.middleware import SessionMiddleware from django.contrib.messages.middleware import MessageMiddleware class UserViewTestCase(TestCase): def setUp(self): self.request = RequestFactory() def test_access_user_page(self): user_id = 1 req = self.request.get( reverse(&#39;user_show&#39;, args=(user_id,)) ) req.user = AnonymousUser() SessionMiddleware().process_request(req) MessageMiddleware().process_request(req) res = views.show(req) self.assertTrue(res.status_code, 302)  上記のようなテストコードがあったとすると views.showでself.kwargs[&#39;user_id&#39;]が参照できないっていう状況に1時間くらいハマった
+結論から言うと RequestFactoryは単純にrequestオブジェクトを作るだけなので、urlsとか関係なく views.show(req)をテストしてるに過ぎないと言うことだった なので views.show(req, user_id=user_id)としてあげると良かったようだ</description>
+    </item>
+    
+  </channel>
+</rss>
